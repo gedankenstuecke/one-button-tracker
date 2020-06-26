@@ -58,14 +58,19 @@
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
           <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          <p class="text-muted">
+            The <i>One Button Tracker</i> is a small side project of <a href='https://tzovar.as'>Bastian Greshake Tzovaras</a> that tries to make the self-tracking of events as easy as possible.
+            The project was inspired by the <i>one-button</i> idea of Thomas Blomseth Christiansen and Jakob Eg Larsen.
+            <br/>
+            Interested in Quantified Self & Self-Research? <a href="http://slackin.openhumans.org/">Reach out on Slack</a>.
+          </p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Contact</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
+            <li><a href="https://www.twitter.com/gedankenstuecke" class="text-white">Follow on Twitter</a></li>
+            <li><a href="https://www.github.com/gedankenstuecke" class="text-white">Code on GitHub</a></li>
+            <li><a href="https://tzovar.as" class="text-white">Read my blog</a></li>
           </ul>
         </div>
       </div>
@@ -74,7 +79,7 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="50" viewBox="0 0 100 100" fill="white" stroke="currentColor" x="0px" y="0px"><path d="M74.79,48c0-3.92-9.79-4.32-12.79-4.42V41.94c0-3.34-10-3.51-12-3.51s-12,.17-12,3.51v1.63C35,43.65,25.35,44,25.35,48L25,55.26c0,4.63,15.05,6.31,25,6.31s25-1.68,25-6.31ZM40,44.08c3,1.28,8.56,1.37,10,1.37s7-.09,10-1.37v3.14c0,.58-3.94,1.64-10,1.64s-9-1.06-10-1.64Zm10-3.65c5.62,0,9,.91,9.89,1.51-.89.6-4.27,1.51-9.89,1.51s-9-.91-9.89-1.51C41,41.35,44.41,40.44,50,40.44ZM38,45.36V48h0c.5,3,10.07,3.25,12,3.25S61.55,51,62.05,48L62,45.36c6,.14,10.44,1.8,10.94,2.52-.64,1.61-8.45,4-22.88,4-14.93,0-22.78-2.88-22.93-4.47C27.54,46.69,32,45.48,38,45.36ZM50,59.77c-15.07,0-23-2.94-23-4.52V49.9c4,2.72,15.15,3.77,23,3.77s19-1,23-3.77v5.36C73,56.83,65.07,59.77,50,59.77ZM30.32,52.27a2.07,2.07,0,1,0,2.07,2.07A2.07,2.07,0,0,0,30.32,52.27Zm0,3.14a1.07,1.07,0,1,1,1.07-1.07A1.07,1.07,0,0,1,30.32,55.41Zm39.6-3.14A2.07,2.07,0,1,0,72,54.34,2.07,2.07,0,0,0,69.92,52.27Zm0,3.14A1.07,1.07,0,1,1,71,54.34,1.07,1.07,0,0,1,69.92,55.41Z"/></svg>
         A One-Button Tracker for Puck.js
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,13 +95,15 @@
     <div class="container">
       <img src="assets/img/puckjs.png" class="img-fluid" alt="Responsive image">
       <h1 class="jumbotron-heading"><i>Puck.js</i> One-Button Tracker</h1>
-      <p class="lead text-muted">Turn your <em>Puck.js</em> into a simple <em>one-button tracker</em>. Every time you press the its button it will record when & for how long you pressed it.</p>
+
+
+      <p class="lead text-muted">Turn your <a href='https://www.puck-js.com'><em>Puck.js</em></a> into a simple <em>one-button tracker</em>. Every time you press the its button it will record when & for how long you pressed it.</p>
       <p>
         <button class="btn btn-primary" id="btnConnect">Install / Connect</button>
         <button class="btn btn-success" id="btnDownload">Download Data</button>
       </p>
-      <div id='pb_div' class="progress">
-        <div id='progress_bar' class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+      <div id="pb_div" class="progress">
+        <div id="progress_bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
       </div>
     </div>
   </section>
@@ -110,23 +117,43 @@
             <img class="card-img-top" src="assets/img/simple.jpeg" size="50%" alt="Card image cap">
             <div class="card-body">
               <p class="card-text">So many use cases: Track allergies, your mood, your eating, how often you stand up. Only your imagination limits what you can track.</p>
+              <div class="collapse" id="collapseUseCase">
+                <div class="card card-body">
+                  <small>
+                    Every time you press the <i>Puck.js</i> button the <i>One Button Tracker</i> will register when & how long you pressed the button. You give those button presses meaning.
+
+                    You could track discrete events or even make up your own morse code. <a href='#'>Check out some examples</a>.
+
+                  </small>
+                </div>
+              </div>
+              <br/>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Learn more</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#collapseUseCase" aria-expanded="false" aria-controls="collapseUseCase">Learn more</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
+
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <img class="card-img-top" src="assets/img/bluetooth.png" size="50%" alt="Card image cap">
             <div class="card-body">
               <p class="card-text">No apps needed: Press the <em>install</em> button above, select your <em>Puck.js</em> and you're good to go. And downloading the data is just as easy.</p>
+              <div class="collapse" id="collapseBluetooth">
+                <div class="card card-body">
+                  <small>
+                    Web Bluetooth currently only works in Chrome & Opera browsers. With them you can install the <i>One Button</i> app on your <i>Puck.js</i> and download the data right from this website. But no information is ever transmitted to the web. Whatever you track, it's between your <i>Puck.js</i> and your browser.
+                  </small>
+                </div>
+              </div>
+              <br/>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Learn more</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#collapseBluetooth" aria-expanded="false" aria-controls="collapseBluetooth">Learn more</button>
                 </div>
               </div>
             </div>
@@ -137,9 +164,17 @@
             <img class="card-img-top" src="assets/img/opensource.png" alt="Card image cap">
             <div class="card-body">
               <p class="card-text">Everything is open source for you to tweak: The <em>Puck.js</em> with all of its hardware, firmware & software and this website is as well.</p>
+              <div class="collapse" id="collapseOpenSource">
+                <div class="card card-body">
+                  <small>
+                    You can get involved! All the <a href="https://github.com/espruino">code etc. for the Puck.js are on GitHub</a>. And so is <a href="https://github.com/gedankenstuecke/one-button-tracker">the code for this website & the One Button Tracker</a>.
+                  </small>
+                </div>
+              </div>
+              <br/>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Learn more</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#collapseOpenSource" aria-expanded="false" aria-controls="collapseOpenSource">Learn more</button>
                 </div>
               </div>
             </div>
@@ -157,96 +192,32 @@
 
 <footer class="text-muted">
   <div class="container">
+    <div class="row">
+    <div class="col">
+    <p class="float-left">An Espruino/Puck.js fan project; <a href="https://github.com/gedankenstuecke/one-button-tracker">open source with ❤</a><br/>Button icon by W. X. Chee from the Noun Project.</p>
+    </div>
+    <div class="col">
     <p class="float-right">
-      <a href="#">Back to top</a>
+      supported by
+      <a href="https://research.cri-paris.org"><img src="assets/img/cri-logo.png"/></a> &
+      <a href="https://www.openhumans.org"><img src="assets/img/oh-logo.png"/></a>
     </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+    </div>
+  </div>
   </div>
 </footer>
 
 <script>
+
 // Code to upload to Bangle.js
-var BANGLE_CODE = `
-setWatch(function(e) {
-  digitalWrite(LED2,0);
-  var duration = e.time - e.lastTime;
-  recFile = require("Storage").open("button_presses.csv","a");
-  recFile.write([e.time,'-',duration].join(",")+';');
-}, BTN, {edge:"falling", debounce:50, repeat:true});
-
-
-setWatch(function(e) {
-  digitalWrite(LED2,1);
-}, BTN, {edge:"rising", debounce:50, repeat:true});\n
-`;
-
-// When we click the connect button...
-document.getElementById("btnConnect").addEventListener("click", function() {
-  Puck.write('reset();',function(){
-    $("#pb_div").show();
-    Puck.setTime();
-    Puck.write(BANGLE_CODE, function(){
-    console.log('connected and installed 1button');
-    $("#pb_hide").show();
-    });
-  });
-})
-
-function saveCSV(filename, csvData) {
-  let a = document.createElement("a"),
-    file = new Blob([csvData], {type: "Comma-separated value file"});
-  let url = URL.createObjectURL(file);
-  a.href = url;
-  a.download = filename+".csv";
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(function() {
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  }, 0);
-}
-
-function saveButtonRecord(record,name) {
-  var csv = `${record.map(rec=>[rec.time, rec.free,rec.duration].join(",")).join("\n")}`;
-  console.log(csv);
-  saveCSV(name, csv);
-};
-
-function ButtonRecordLineToObject(l) {
-  var t = l.trim().split(",");
-  var o = {
-    time: parseFloat(t[0]),
-    free: t[1],
-    duration: parseFloat(t[2]),
-  };
-  return o;
-};
-
-function downloadButtonPresses(callback) {
-  var flength;
-  var record;
-  Puck.eval('require("Storage").open("button_presses.csv","r").getLength()',function(x){
-    flength=x;
-    Puck.eval('require("Storage").open("button_presses.csv","r").read('+flength+')',function(data){
-      console.log(data);
-      record = data.slice(0, -1).split(";").map(l=>ButtonRecordLineToObject(l));
-      console.log(record);
-      callback(record);
-    })
-  });
-}
-
-document.getElementById("btnDownload").addEventListener("click", function() {
-  downloadButtonPresses(record => saveButtonRecord(record, `button_presses`));
-});
-
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-
+<script src="assets/js/puck_connection.js"></script>
+<script>
+  $("#pb_div").hide();
+</script>
  </body>
 </html>
