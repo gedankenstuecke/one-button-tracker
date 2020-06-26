@@ -29,12 +29,10 @@ setWatch(function(e) {
 
 // When we click the connect button...
 document.getElementById("btnConnect").addEventListener("click", function() {
-  Puck.write('reset();', function(){
-    Puck.write(BANGLE_CODE);
-    Puck.setTime();
-    console.log('connected and installed 1button');
-  });
-});
+  Puck.write(BANGLE_CODE);
+  Puck.setTime();
+  console.log('connected and installed 1button');
+})
 
 function saveCSV(filename, csvData) {
   let a = document.createElement("a"),
