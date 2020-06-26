@@ -51,6 +51,8 @@ function AccelRecordLineToObject(l) {
 
 function downloadButtonPresses(callback) {
   Util.readStorageFile(`button_presses.csv`,data=>{
+    console.log('got data');
+    console.log(data);
     var record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
     callback(record);
   });
