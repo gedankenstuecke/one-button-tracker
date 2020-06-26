@@ -50,13 +50,20 @@ function AccelRecordLineToObject(l) {
 };
 
 function downloadButtonPresses(callback) {
-  Puck.eval()
-  Util.readStorageFile(`button_presses.csv`,data=>{
-    console.log('got data');
-    console.log(data);
-    var record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
-    callback(record);
+  var flength;
+  Puck.eval('require("Storage").open("button_presses.csv","r").getLength()',function(x){
+    flength=x;
+    Puck.eval('require("Storage").open("button_presses.csv","r").read('+flength+')',function(data){
+      var record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
+      callback(record);
+    })
   });
+  //Util.readStorageFile(`button_presses.csv`,data=>{
+  //  console.log('got data');
+  //  console.log(data);
+  //  var record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
+  //  callback(record);
+  //});
 }
 
 document.getElementById("btnDownload").addEventListener("click", function() {
