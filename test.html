@@ -51,10 +51,12 @@ function AccelRecordLineToObject(l) {
 
 function downloadButtonPresses(callback) {
   var flength;
+  var record;
   Puck.eval('require("Storage").open("button_presses.csv","r").getLength()',function(x){
     flength=x;
     Puck.eval('require("Storage").open("button_presses.csv","r").read('+flength+')',function(data){
-      var record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
+      console.log(data);
+      record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
       callback(record);
     })
   });
