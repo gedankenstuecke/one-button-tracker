@@ -71,7 +71,7 @@ function downloadButtonPresses(callback) {
     flength=x;
     Puck.eval('require("Storage").open("button_presses.csv","r").read('+flength+')',function(data){
       console.log(data);
-      record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
+      record = data.slice(0, -1).split(";").map(l=>AccelRecordLineToObject(l));
       console.log(record);
       callback(record);
     })
