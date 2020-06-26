@@ -34,10 +34,24 @@ document.getElementById("btnConnect").addEventListener("click", function() {
   console.log('connected and installed 1button');
 })
 
+function saveCSV(filename, csvData) {
+  let a = document.createElement("a"),
+    file = new Blob([csvData], {type: "Comma-separated value file"});
+  let url = URL.createObjectURL(file);
+  a.href = url;
+  a.download = filename+".csv";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 0);
+}
 
 function saveAccelRecord(record,name) {
   var csv = `${record.map(rec=>[rec.time, rec.free,rec.duration].join(",")).join("\n")}`;
-  Util.saveCSV(name, csv);
+  console.log(csv);
+  saveCSV(name, csv);
 };
 
 function AccelRecordLineToObject(l) {
@@ -58,6 +72,7 @@ function downloadButtonPresses(callback) {
     Puck.eval('require("Storage").open("button_presses.csv","r").read('+flength+')',function(data){
       console.log(data);
       record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
+      console.log(record);
       callback(record);
     })
   });
@@ -73,19 +88,6 @@ document.getElementById("btnDownload").addEventListener("click", function() {
   downloadButtonPresses(record => saveAccelRecord(record, `button_presses`));
 });
 
-function saveCSV(filename, csvData) {
-  let a = document.createElement("a"),
-    file = new Blob([csvData], {type: "Comma-separated value file"});
-  let url = URL.createObjectURL(file);
-  a.href = url;
-  a.download = filename+".csv";
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(function() {
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  }, 0);
-}
 
 </script>
  </body>
