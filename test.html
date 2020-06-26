@@ -14,7 +14,6 @@
 <script>
 // Code to upload to Bangle.js
 var BANGLE_CODE = `
-reset();
 setWatch(function(e) {
   digitalWrite(LED2,0);
   var duration = e.time - e.lastTime;
@@ -30,10 +29,12 @@ setWatch(function(e) {
 
 // When we click the connect button...
 document.getElementById("btnConnect").addEventListener("click", function() {
-  Puck.write(BANGLE_CODE);
-  Puck.setTime();
-  console.log('connected and installed 1button');
-})
+  Puck.write('reset();', function(){
+    Puck.write(BANGLE_CODE);
+    Puck.setTime();
+    console.log('connected and installed 1button');
+  });
+});
 
 function saveCSV(filename, csvData) {
   let a = document.createElement("a"),
