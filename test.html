@@ -15,7 +15,7 @@ setWatch(function(e) {
   digitalWrite(LED2,0);
   var duration = e.time - e.lastTime;
   recFile = require("Storage").open("button_presses.csv","a");
-  recFile.write([e.time,'-',duration].join(",")+'\r');
+  recFile.write([e.time,'-',duration].join(",")+'\\n');
 }, BTN, {edge:"falling", debounce:50, repeat:true});
 
 
