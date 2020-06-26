@@ -34,7 +34,7 @@ document.getElementById("btnConnect").addEventListener("click", function() {
       // Wait for it to reset itself
       setTimeout(function() {
         // Now upload our code to it
-        connection.write(BANGLE_CODE),
+        connection.write(BANGLE_CODE,
           function() { console.log("Ready..."); });
       }, 1500);
     });
