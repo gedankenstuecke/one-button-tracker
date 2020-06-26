@@ -17,8 +17,6 @@ setWatch(function(e) {
   recFile = require("Storage").open("button_presses.csv","a");
   recFile.write([e.time,'-',duration].join(",")+"\n");
 }, BTN, {edge:"falling", debounce:50, repeat:true});
-
-
 setWatch(function(e) {
   digitalWrite(LED2,1);
 }, BTN, {edge:"rising", debounce:50, repeat:true});
@@ -45,7 +43,7 @@ document.getElementById("btnConnect").addEventListener("click", function() {
       // Wait for it to reset itself
       setTimeout(function() {
         // Now upload our code to it
-        connection.write("\x03\x10if(1){"+BANGLE_CODE+"}\n",
+        connection.write(BANGLE_CODE),
           function() { console.log("Ready..."); });
       }, 1500);
     });
