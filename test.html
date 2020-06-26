@@ -1,16 +1,12 @@
 <html>
  <head>
-  <title>Bangle.js Accelerometer streaming</title>
+  <title>Puck.js One Button Tracker</title>
  </head>
  <body>
 <script src="https://www.puck-js.com/puck.js"></script>
 <button id="btnConnect">Connect</button>
 <button id="btnDownload">Download</button>
 
-
-<p>X: <span class="bar"><span id="barX"></span></span></p>
-<p>Y: <span class="bar"><span id="barY"></span></span></p>
-<p>Z: <span class="bar"><span id="barZ"></span></span></p>
 <script>
 // Code to upload to Bangle.js
 var BANGLE_CODE = `
@@ -50,17 +46,17 @@ function saveCSV(filename, csvData) {
   }, 0);
 }
 
-function saveAccelRecord(record,name) {
+function saveButtonRecord(record,name) {
   var csv = `${record.map(rec=>[rec.time, rec.free,rec.duration].join(",")).join("\n")}`;
   console.log(csv);
   saveCSV(name, csv);
 };
 
-function AccelRecordLineToObject(l) {
+function ButtonRecordLineToObject(l) {
   var t = l.trim().split(",");
   var o = {
-    time: parseInt(t[0]),
-    free: parseFloat(t[1]),
+    time: parseFloat(t[0]),
+    free: t[1],
     duration: parseFloat(t[2]),
   };
   return o;
@@ -73,21 +69,15 @@ function downloadButtonPresses(callback) {
     flength=x;
     Puck.eval('require("Storage").open("button_presses.csv","r").read('+flength+')',function(data){
       console.log(data);
-      record = data.slice(0, -1).split(";").map(l=>AccelRecordLineToObject(l));
+      record = data.slice(0, -1).split(";").map(l=>ButtonRecordLineToObject(l));
       console.log(record);
       callback(record);
     })
   });
-  //Util.readStorageFile(`button_presses.csv`,data=>{
-  //  console.log('got data');
-  //  console.log(data);
-  //  var record = data.trim().split(";").map(l=>AccelRecordLineToObject(l));
-  //  callback(record);
-  //});
 }
 
 document.getElementById("btnDownload").addEventListener("click", function() {
-  downloadButtonPresses(record => saveAccelRecord(record, `button_presses`));
+  downloadButtonPresses(record => saveButtonRecord(record, `button_presses`));
 });
 
 
