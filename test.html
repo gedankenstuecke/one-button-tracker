@@ -12,7 +12,7 @@
 // Code to upload to Bangle.js
 var BANGLE_CODE = `
 setWatch(function(e) {
-  digitalWrite(LED3,0);
+  digitalWrite(LED2,0);
   var duration = e.time - e.lastTime;
   recFile = require("Storage").open("button_presses.csv","a");
   recFile.write([e.time,'-',duration].join(",")+"\n");
@@ -20,7 +20,7 @@ setWatch(function(e) {
 
 
 setWatch(function(e) {
-  digitalWrite(LED3,1);
+  digitalWrite(LED2,1);
 }, BTN, {edge:"rising", debounce:50, repeat:true});
 
 `;
