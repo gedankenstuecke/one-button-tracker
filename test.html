@@ -4,7 +4,6 @@
  </head>
  <body>
 <script src="https://www.puck-js.com/puck.js"></script>
-<script src="lib/interface.js"></script>
 <button id="btnConnect">Connect</button>
 <button id="btnDownload">Download</button>
 
@@ -31,6 +30,7 @@ setWatch(function(e) {
 // When we click the connect button...
 document.getElementById("btnConnect").addEventListener("click", function() {
   Puck.write(BANGLE_CODE);
+  Puck.setTime();
 })
 
 
@@ -50,6 +50,7 @@ function AccelRecordLineToObject(l) {
 };
 
 function downloadButtonPresses(callback) {
+  Puck.eval()
   Util.readStorageFile(`button_presses.csv`,data=>{
     console.log('got data');
     console.log(data);
@@ -61,6 +62,20 @@ function downloadButtonPresses(callback) {
 document.getElementById("btnDownload").addEventListener("click", function() {
   downloadButtonPresses(record => saveAccelRecord(record, `button_presses`));
 });
+
+function saveCSV(filename, csvData) {
+  let a = document.createElement("a"),
+    file = new Blob([csvData], {type: "Comma-separated value file"});
+  let url = URL.createObjectURL(file);
+  a.href = url;
+  a.download = filename+".csv";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function() {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 0);
+}
 
 </script>
  </body>
