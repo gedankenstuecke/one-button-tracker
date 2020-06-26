@@ -14,6 +14,7 @@
 <script>
 // Code to upload to Bangle.js
 var BANGLE_CODE = `
+reset();
 setWatch(function(e) {
   digitalWrite(LED2,0);
   var duration = e.time - e.lastTime;
