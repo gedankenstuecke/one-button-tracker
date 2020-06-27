@@ -1,15 +1,21 @@
 var BANGLE_CODE = `
+var light;
+var temperature;
+var accel;
 setWatch(function(e) {
   digitalWrite(LED2,0);
   var duration = e.time - e.lastTime;
+  light = Puck.light();
+  temperature = Puck.getTemperature();
+  accel = Puck.accel().acc
   recFile = require("Storage").open("button_presses.csv","a");
-  recFile.write([e.time,'-',duration].join(",")+';');
+  recFile.write([e.time,'-',duration,temperature,light,accel.x,accel.y,accel.z].join(",")+';');
 }, BTN, {edge:"falling", debounce:50, repeat:true});
 
 
 setWatch(function(e) {
   digitalWrite(LED2,1);
-}, BTN, {edge:"rising", debounce:50, repeat:true});\n
+}, BTN, {edge:"rising", debounce:200, repeat:true});\n
 `;
 
 // When we click the connect button...
@@ -42,7 +48,8 @@ function saveCSV(filename, csvData) {
 }
 
 function saveButtonRecord(record,name) {
-  var csv = `${record.map(rec=>[rec.time, rec.free,rec.duration].join(",")).join("\n")}`;
+  var csv = `${record.map(rec=>[rec.time, rec.free,rec.duration,rec.temperature,rec.light,rec.x,rec.y,rec.z].join(",")).join("\n")}`;
+  csv = csv + "\n";
   console.log(csv);
   saveCSV(name, csv);
 };
@@ -53,6 +60,11 @@ function ButtonRecordLineToObject(l) {
     time: parseFloat(t[0]),
     free: t[1],
     duration: parseFloat(t[2]),
+    temperature: parseFloat(t[3]),
+    light: parseFloat(t[4]),
+    x: parseFloat(t[5]),
+    y: parseFloat(t[6]),
+    z: parseFloat(t[7]),
   };
   return o;
 };
@@ -69,6 +81,12 @@ function downloadButtonPresses(callback) {
   });
 }
 
+function deleteButtonPresses(callback) {
+  Puck.eval('require("Storage").open("button_presses.csv","r").erase()',function(x){
+    console.log('deleted storage');
+  });
+}
+
 document.getElementById("btnDownload").addEventListener("click", function() {
   console.log('start download');
   $("#pb_div").show();
@@ -76,4 +94,10 @@ document.getElementById("btnDownload").addEventListener("click", function() {
 
 document.getElementById("btnDownload").addEventListener("click", function() {
   downloadButtonPresses(record => saveButtonRecord(record, `button_presses`));
+});
+
+document.getElementById("btnErase").addEventListener("click", function() {
+  if (confirm("Are you sure? This will delete all of your button presses!")) {
+      deleteButtonPresses();
+  }
 });
