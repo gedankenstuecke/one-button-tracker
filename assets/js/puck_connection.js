@@ -59,7 +59,7 @@ function saveButtonRecord(record,name) {
 function ButtonRecordLineToObject(l) {
   var t = l.trim().split(",");
   var o = {
-    time: parseFloat(t[0]),
+    time: t[0],
     free: t[1],
     duration: parseFloat(t[2]),
     temperature: parseFloat(t[3]),
