@@ -2,7 +2,7 @@ var BANGLE_CODE = `
 var light;
 var temperature;
 var accel;
-var ;
+var t;
 setWatch(function(e) {
   digitalWrite(LED2,0);
   var duration = e.time - e.lastTime;
