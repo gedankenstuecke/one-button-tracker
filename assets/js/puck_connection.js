@@ -2,14 +2,16 @@ var BANGLE_CODE = `
 var light;
 var temperature;
 var accel;
+var ;
 setWatch(function(e) {
   digitalWrite(LED2,0);
   var duration = e.time - e.lastTime;
+  t = new Date(e.time*1000);
   light = Puck.light();
   temperature = Puck.getTemperature();
-  accel = Puck.accel().acc
+  accel = Puck.accel().acc;
   recFile = require("Storage").open("button_presses.csv","a");
-  recFile.write([e.time,'-',duration,temperature,light,accel.x,accel.y,accel.z].join(",")+';');
+  recFile.write([t,'-',duration,temperature,light,accel.x,accel.y,accel.z].join(",")+';');
 }, BTN, {edge:"falling", debounce:50, repeat:true});
 
 
